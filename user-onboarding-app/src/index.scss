@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #5effae;
 }
 
 code {
@@ -12,10 +13,20 @@ code {
     monospace;
 }
 
+.App {
+  margin-top: 20%;
+}
 .onboarding-form-container {
   display: flex;
   flex-flow: column;
   width: 40%;
   margin: auto;
-  margin-top: 20%;
+}
+input {
+  margin-bottom: 10px;
+}
+
+.identity {
+  font-size: 4rem;
+  color: red;
 }

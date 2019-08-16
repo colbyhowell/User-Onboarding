@@ -27,6 +27,12 @@ const OnboardingForm = ({ errors, touched, values, status }) => {
         {touched.password && errors.password && (
           <p className="error-message">{errors.password}</p>
         )}
+        <Field component="select" className="drop-down" name="role">
+        <option>Select Role</option>
+        <option value="dude">That dude over there</option>
+        <option value="lady">That lady over here</option>
+        <option value="child">This child</option>
+        </Field>
         <label className="terms-checkbox">
           Accept Terms Of Service?
           <Field type="checkbox" name="terms" checked={values.terms} />
@@ -44,12 +50,13 @@ const OnboardingForm = ({ errors, touched, values, status }) => {
 };
 
 const formikPassValues = withFormik({
-  mapPropsToValues({ name, email, password, terms }) {
+  mapPropsToValues({ name, email, password, terms, role }) {
     return {
       name: name || "",
       email: email || "",
       password: password || "",
-      terms: terms || false
+      terms: terms || false,
+      role: role || ""
     };
   },
   validationSchema: Yup.object().shape({
@@ -64,7 +71,8 @@ const formikPassValues = withFormik({
       .min(6, "Do better")
       .max(20, "Woah slow down")
       .required(),
-    terms: Yup.boolean().oneOf([true], "You must accept the terms of service")
+    terms: Yup.boolean().oneOf([true], "You must accept the terms of service"),
+    role: Yup.string().required()
   }),
 
   handleSubmit(values, { setStatus, resetForm }) {
